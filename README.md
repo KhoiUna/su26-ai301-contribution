@@ -1,15 +1,20 @@
-# Contribution [#]: [Issue Title]
+# Contribution [#]: Replace any types with proper interfaces in component props
 
 **Contribution Number:** [1 / 2 / 3]  
+
 **Student:** Khoi Nguyen
-**Issue:** https://github.com/MISP/MISP/issues/1179
+
+**Issue:** https://github.com/OneBusAway/wayfinder/issues/404
+
 **Status:** Phase I
 
 ---
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs explaining why this issue interests you, how it matches your skills/learning goals, what you hope to learn]
+I am a software engineer with a strong background in JavaScript and TypeScript, so improving type safety is right up my alley. I enjoy working on structural codebase health, and cleaning up `any` types is a great way to prevent runtime bugs and improve the overall developer experience.
+
+Taking this on will give me a chance to get familiar with your repository's data structures and API architecture. It is also a great opportunity to practice tracing data flows across components and work with JSDoc typing in a real-world project, which will help me become a more disciplined developer.
 
 ---
 
