@@ -1,10 +1,10 @@
-# Contribution [#]: Replace any types with proper interfaces in component props
+# Contribution [#]: Change default styling of an open `<endpoint>` to have an opaque interior
 
 **Contribution Number:** [1 / 2 / 3]  
 
 **Student:** Khoi Nguyen
 
-**Issue:** https://github.com/OneBusAway/wayfinder/issues/404
+**Issue:** https://github.com/Doenet/DoenetML/issues/184
 
 **Status:** Phase I
 
@@ -12,7 +12,7 @@
 
 ## Why I Chose This Issue
 
-I am a software engineer with a strong background in JavaScript and TypeScript, so improving type safety is right up my alley. I enjoy working on structural codebase health, and cleaning up `any` types is a great way to prevent runtime bugs and improve the overall developer experience.
+I am a software engineer with a strong background in React, JavaScript and TypeScript, so improving type safety is right up my alley. I enjoy working on structural codebase health, and cleaning up `any` types is a great way to prevent runtime bugs and improve the overall developer experience.
 
 Taking this on will give me a chance to get familiar with your repository's data structures and API architecture. It is also a great opportunity to practice tracing data flows across components and work with JSDoc typing in a real-world project, which will help me become a more disciplined developer.
 
@@ -22,19 +22,19 @@ Taking this on will give me a chance to get familiar with your repository's data
 
 ### Problem Description
 
-[In your own words, what's broken or missing?]
+The default visual styling for an open `<endpoint>` component lacks clarity because its interior is transparent or hollow. This can cause the component to blend into background gridlines or other shapes, reducing its readability and visual prominence.
 
 ### Expected Behavior
 
-[What should happen?]
+When an `<endpoint>` is in an open state, its interior should default to an opaque styling to cleanly mask any underlying graphic elements.
 
 ### Current Behavior
 
-[What actually happens?]
+The open `<endpoint>` has a non-opaque interior, allowing background elements, graphs, or line segments to show through it.
 
 ### Affected Components
 
-[Which parts of the codebase are involved?]
+I found the component `/packages/doenetml/src/Viewer/renderers/point.tsx` might be affected.
 
 ---
 
@@ -42,19 +42,20 @@ Taking this on will give me a chance to get familiar with your repository's data
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+Installed Node.js and Rust.
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Run `npm install` .
+2. Run `npm run build`.
+3. Run `npm run dev` to start a local dev server.
 
 ### Reproduction Evidence
 
-- **Commit showing reproduction:** [Link to commit in your fork]
-- **Screenshots/logs:** [If applicable]
-- **My findings:** [What you discovered during reproduction]
+- **Commit showing reproduction:** https://github.com/KhoiUna/DoenetML/commit/67a486abe4f1f17b986b1e01e2a261d1fe2dcb9f
+- **Screenshots/logs:** <img width="165" height="208" alt="image" src="https://github.com/user-attachments/assets/c9875d9f-e11c-4138-90ca-09baa35d93dc" />
+
+- **My findings:** The rendering applies a stroke color to the endpoint but leaves the fill property transparent.
 
 ---
 
