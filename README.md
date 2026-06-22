@@ -63,30 +63,31 @@ Installed Node.js and Rust.
 
 ### Analysis
 
-[Your analysis of the root cause - what's causing the issue?]
+The underlying rendering logic for `<endpoint>` maps state attributes directly to CSS/SVG presentation properties. When the component state evaluates to "open," the styling configuration fails to supply a fallback default background fill color, leaving it transparent instead of masks-the-background opaque.
 
 ### Proposed Solution
 
-[High-level description of your fix approach]
+Modify the default style properties tied to the `<endpoint>` component's open state configuration.
 
 ### Implementation Plan
 
 Using UMPIRE framework (adapted):
 
-**Understand:** [Restate the problem]
+**Understand**: Open <endpoint> components are transparent inside by default, making them hard to see over background elements. They need an opaque default interior fill.
 
-**Match:** [What similar patterns/solutions exist in the codebase?]
+**Match**: Look at how similar graphical components (like open points, boundary nodes, or <point> circles) handle open/closed states and default fills in packages/doenetml.
 
-**Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
+**Plan**:
 
-**Implement:** [Link to your branch/commits as you work]
+1. Locate the rendering component file for `<endpoint>` in the source directory.
+2. Update the default styling dictionary or SVG properties to append an opaque fill rule specifically when the component evaluates as an open node.
+3. Launch automatic rebuilding via npm run build --watch from the package directory and verify the fix.
 
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
+**Implement**: https://github.com/KhoiUna/DoenetML/tree/fix-issue-184
 
-**Evaluate:** [How will you verify it works?]
+**Review**: Ensure compliance with DoenetML's contribution guidelines, verifying that the change doesn't accidentally alter closed endpoint designs.
+
+**Evaluate**: Load a graph demo containing both open and closed endpoints over a dark or dense grid to verify the open interior completely masks underlying graphics.
 
 ---
 
