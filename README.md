@@ -112,19 +112,31 @@ Using UMPIRE framework (adapted):
 
 ## Implementation Notes
 
-### Week [X] Progress
+### Week 1 Progress
 
-[What you built this week, challenges faced, decisions made]
+* **What I built:** Located the endpoint rendering logic and modified the initial canvas properties. Implemented the inline fix: `fillOpacity: useOpenSymbol ? 1 : SVs.selectedStyle.markerOpacity`.
+* **Challenges faced:** Understanding JSXGraph's default rendering behaviors and how attributes map down to SVG elements.
+* **Decisions made:** Focused on fixing the static state first (`<endpoint open>`) to ensure the baseline opaque styling logic worked correctly before handling dynamic state tracking.
 
-### Week [Y] Progress
+### Week 2 Progress
 
-[Continue documenting as you work]
+* **What I built:** Investigated the dynamic state change logic starting on line 504 of `point.tsx`. Analyzed how JSXGraph properties are modified dynamically when `markerOpacity` updates.
+* **Challenges faced:** Realized that `useOpenSymbol` changes during a click event (like `<endpoint switchable>`), but the component doesn't automatically trigger the correct SVG fill update because JSXGraph properties require explicit, imperative overrides.
+* **Decisions made:** Decided to leverage a React `useRef` hook (`previousUseOpenSymbol`) to track state transitions across renders, allowing me to detect exactly when the component toggles between open and closed.
+
+### Week 3 Progress
+
+* **What I built:** Integrated an `else if` block into the line 504 condition block. Used the `useRef` pointer to evaluate if `useOpenSymbol` changed from its previous value. Imperatively updated the component property using the lowercase convention required by the library.
+* **Challenges faced:** Debugging why properties wouldn't update on click. Resolved this by adapting to the framework's strict naming quirk where initialization uses camelCase but dynamic updates require lowercase.
+* **Decisions made:** Enforced `pointJXG.current.visProp.fillopacity = 1` dynamically when the open symbol state is triggered to ensure the interior remains completely opaque during interactions.
+
+---
 
 ### Code Changes
 
-- **Files modified:** [List]
-- **Key commits:** [Links to important commits]
-- **Approach decisions:** [Why you chose certain approaches]
+* **Files modified:** `packages/doenetml/src/Viewer/renderers/point.tsx`
+* **Approach decisions:** * Used a `useRef` (`previousUseOpenSymbol`) to capture the previous state cleanly without causing infinite rerender loops.
+* Applied `fillopacity` in strictly lowercase form inside the imperative update block to bypass JSXGraph's property mutations bug.
 
 ---
 
